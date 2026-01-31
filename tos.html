@@ -24,6 +24,68 @@
             cursor: none;
         }
 
+        /* Reading Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #5b0000, #ff0000, #ff6666);
+            z-index: 10000;
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #5b0000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Blood Trail Effect */
+        .blood-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ff0000, #5b0000);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.8;
+            animation: trailFade 1s ease-out forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: fixed;
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9996;
+            animation: rippleExpand 1s ease-out forwards;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
         /* Custom Cursor */
         .cursor {
             position: fixed;
@@ -704,6 +766,7 @@
 </head>
 
 <body>
+    <div class="progress-bar" id="progressBar"></div>
     <div class="cursor"></div>
     <div class="bg-gradient"></div>
     <div class="bg-particles" id="particles"></div>
@@ -868,12 +931,55 @@
     </div>
 
     <script>
-        // Custom cursor
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Custom cursor with blood trail
         const cursor = document.querySelector('.cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+
+            // Blood trail effect
+            if (Math.random() > 0.7) {
+                createBloodTrail(e.clientX, e.clientY);
+            }
         });
+
+        function createBloodTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'blood-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+
+        // Ripple click effect
+        document.addEventListener('click', (e) => {
+            createRipple(e.clientX, e.clientY);
+        });
+
+        function createRipple(x, y) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = (x - 100) + 'px';
+            ripple.style.top = (y - 100) + 'px';
+            document.body.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        }
 
         // Generate enhanced particles
         const particlesContainer = document.getElementById('particles');
