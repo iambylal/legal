@@ -1125,45 +1125,71 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Scroll-triggered animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Smooth typewriter animation with float and swipe
+        function animateText(element, delay = 0) {
+            setTimeout(() => {
+                const text = element.textContent.trim();
+                if (!text) return;
 
-        const observer = new IntersectionObserver((entries) => {
+                element.textContent = '';
+                element.style.opacity = '1';
+                element.style.transform = 'none';
+
+                const chars = text.split('');
+                let index = 0;
+
+                function addChar() {
+                    if (index < chars.length) {
+                        const span = document.createElement('span');
+                        span.textContent = chars[index] === ' ' ? '\u00A0' : chars[index];
+                        span.style.display = 'inline-block';
+                        span.style.opacity = '0';
+                        span.style.transform = 'translateX(-15px) translateY(5px)';
+                        span.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                        element.appendChild(span);
+
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                                span.style.transform = 'translateX(0) translateY(0)';
+                            }, 10);
+                        });
+
+                        index++;
+                        setTimeout(addChar, 20); // 20ms per character for smooth speed
+                    }
+                }
+                addChar();
+            }, delay);
+        }
+
+        // Observer for scroll-triggered animations
+        const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideIn 0.8s ease-out forwards';
-                    entry.target.style.opacity = '1';
+                if (entry.isIntersecting && !entry.target.dataset.revealed) {
+                    entry.target.dataset.revealed = 'true';
+                    animateText(entry.target);
                 }
             });
-        }, observerOptions);
-
-        // Observe all elements for scroll animations
-        document.querySelectorAll('h2, h3, p, ul, .highlight, .data-category, .intro').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            observer.observe(el);
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
 
-        // Animate list items individually
-        document.querySelectorAll('li').forEach((li, index) => {
-            li.style.opacity = '0';
-            li.style.transform = 'translateX(-20px)';
+        // Initialize animations
+        window.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('.title');
+            const lastUpdated = document.querySelector('.last-updated');
 
-            const liObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.animation = 'slideIn 0.6s ease-out forwards';
-                            entry.target.style.opacity = '1';
-                        }, index * 50);
-                    }
-                });
-            }, observerOptions);
+            // Animate title immediately
+            if (title) animateText(title, 300);
+            if (lastUpdated) animateText(lastUpdated, 800);
 
-            liObserver.observe(li);
+            // Observe ALL text elements for scroll animation
+            document.querySelectorAll('h2, h3, p:not(.last-updated), li, .data-category, .intro').forEach(el => {
+                el.style.opacity = '0';
+                scrollObserver.observe(el);
+            });
         });
     </script>
 </body>
