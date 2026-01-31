@@ -821,7 +821,7 @@
 
         <div class="header">
             <span class="emoji-icon">🔐</span>
-            <h1 class="title">Privacy Policy</h1>
+            <h1 class="title">PRIVACY POLICY</h1>
             <p class="last-updated">Last Updated: January 31, 2026</p>
         </div>
 
@@ -1075,42 +1075,6 @@
             }, 1000);
         }
 
-        // Apply text animations
-        window.addEventListener('DOMContentLoaded', () => {
-            const title = document.querySelector('.title');
-            const lastUpdated = document.querySelector('.last-updated');
-
-            if (title) {
-                setTimeout(() => {
-                    let i = 0;
-                    const text = 'Privacy Policy';
-                    title.textContent = '';
-                    title.style.opacity = '1';
-                    function type() {
-                        if (i < text.length) {
-                            title.textContent += text.charAt(i);
-                            i++;
-                            setTimeout(type, 120);
-                        }
-                    }
-                    type();
-                }, 400);
-            }
-
-            if (lastUpdated) {
-                setTimeout(() => {
-                    const text = lastUpdated.textContent;
-                    lastUpdated.textContent = '';
-                    text.split('').forEach((char, index) => {
-                        const span = document.createElement('span');
-                        span.textContent = char === ' ' ? '\u00A0' : char;
-                        span.style.animationDelay = `${index * 0.03}s`;
-                        lastUpdated.appendChild(span);
-                    });
-                }, 2500);
-            }
-        });
-
         // Generate enhanced particles
         const particlesContainer = document.getElementById('particles');
         const particleCount = 70;
@@ -1125,7 +1089,7 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Smooth typewriter animation with float and swipe
+        // Smooth typewriter with float and swipe (OPTIMIZED - no lag!)
         function animateText(element, delay = 0) {
             setTimeout(() => {
                 const text = element.textContent.trim();
@@ -1143,31 +1107,38 @@
                         const span = document.createElement('span');
                         span.textContent = chars[index] === ' ' ? '\u00A0' : chars[index];
                         span.style.opacity = '0';
-                        span.style.transform = 'translateX(-15px) translateY(5px)';
-                        span.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                        span.style.transform = 'translateX(-12px) translateY(4px)';
+                        span.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                         element.appendChild(span);
 
                         requestAnimationFrame(() => {
-                            setTimeout(() => {
-                                span.style.opacity = '1';
-                                span.style.transform = 'translateX(0) translateY(0)';
-                            }, 10);
+                            span.style.opacity = '1';
+                            span.style.transform = 'translateX(0) translateY(0)';
                         });
 
                         index++;
-                        setTimeout(addChar, 10); // Fast 10ms per character
+                        setTimeout(addChar, 30); // Optimized 30ms for smoothness
                     }
                 }
                 addChar();
             }, delay);
         }
 
-        // Observer for scroll-triggered animations
+        // Scroll observer for headings only (reduces lag)
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.dataset.revealed) {
                     entry.target.dataset.revealed = 'true';
-                    entry.target.style.transition="opacity 0.6s";entry.target.style.opacity="1";
+
+                    // Typewriter for headings, simple fade for text
+                    if (entry.target.tagName === 'H2' || entry.target.tagName === 'H3') {
+                        animateText(entry.target);
+                    } else {
+                        // Simple, performant fade for body text
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                 }
             });
         }, {
@@ -1175,18 +1146,19 @@
             rootMargin: '0px 0px -50px 0px'
         });
 
-        // Initialize animations
+        // Initialize
         window.addEventListener('DOMContentLoaded', () => {
             const title = document.querySelector('.title');
             const lastUpdated = document.querySelector('.last-updated');
 
-            // Animate title immediately
-            if(title){setTimeout(function(){var txt="Privacy Policy";title.textContent="";title.style.opacity="1";var i=0;function type(){if(i<txt.length){title.textContent+=txt.charAt(i);i++;setTimeout(type,80);}}type();},300);}
-            if (lastUpdated) animateText(lastUpdated, 800);
+            // Typewriter for title
+            if (title) animateText(title, 300);
+            if (lastUpdated) animateText(lastUpdated, 1000);
 
-            // Observe ALL text elements for scroll animation
+            // Apply to all elements  
             document.querySelectorAll('h2, h3, p:not(.last-updated), li, .data-category, .intro').forEach(el => {
                 el.style.opacity = '0';
+                el.style.transform = 'translateY(15px)';
                 scrollObserver.observe(el);
             });
         });
