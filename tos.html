@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - GLOBAL OFFICIAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -37,9 +37,17 @@
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .bg-particles {
@@ -63,8 +71,17 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
-            50% { transform: translateY(-120px) translateX(60px); opacity: 0.5; }
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.2;
+            }
+
+            50% {
+                transform: translateY(-120px) translateX(60px);
+                opacity: 0.5;
+            }
         }
 
         .container {
@@ -105,8 +122,15 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .title {
@@ -122,8 +146,15 @@
         }
 
         @keyframes titleGlow {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(91, 0, 0, 0.6)); }
-            50% { filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.9)); }
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 20px rgba(91, 0, 0, 0.6));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+            }
         }
 
         .emoji-icon {
@@ -135,8 +166,15 @@
         }
 
         @keyframes iconFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
         }
 
         .last-updated {
@@ -157,8 +195,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .intro {
@@ -200,13 +245,27 @@
         }
 
         @keyframes borderPulse {
-            0%, 100% { box-shadow: 0 0 10px #5b0000; }
-            50% { box-shadow: 0 0 20px #ff0000; }
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px #5b0000;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #ff0000;
+            }
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         h2:first-of-type {
@@ -252,8 +311,15 @@
         }
 
         @keyframes highlightGlow {
-            0%, 100% { box-shadow: 0 5px 20px rgba(91, 0, 0, 0.3); }
-            50% { box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5); }
+
+            0%,
+            100% {
+                box-shadow: 0 5px 20px rgba(91, 0, 0, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
+            }
         }
 
         strong {
@@ -306,6 +372,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class=" bg-gradient">
     </div>
@@ -501,6 +568,6 @@
 
         document.querySelectorAll('h2').forEach(el => observer.observe(el));
     </script>
-    </body>
+</body>
 
 </html>
