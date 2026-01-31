@@ -1142,7 +1142,6 @@
                     if (index < chars.length) {
                         const span = document.createElement('span');
                         span.textContent = chars[index] === ' ' ? '\u00A0' : chars[index];
-                        span.style.display = 'inline-block';
                         span.style.opacity = '0';
                         span.style.transform = 'translateX(-15px) translateY(5px)';
                         span.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -1156,7 +1155,7 @@
                         });
 
                         index++;
-                        setTimeout(addChar, 20); // 20ms per character for smooth speed
+                        setTimeout(addChar, 10); // Fast 10ms per character
                     }
                 }
                 addChar();
@@ -1168,7 +1167,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.dataset.revealed) {
                     entry.target.dataset.revealed = 'true';
-                    animateText(entry.target);
+                    entry.target.style.transition="opacity 0.6s";entry.target.style.opacity="1";
                 }
             });
         }, {
@@ -1182,7 +1181,7 @@
             const lastUpdated = document.querySelector('.last-updated');
 
             // Animate title immediately
-            if (title) animateText(title, 300);
+            if(title){setTimeout(function(){var txt="Privacy Policy";title.textContent="";title.style.opacity="1";var i=0;function type(){if(i<txt.length){title.textContent+=txt.charAt(i);i++;setTimeout(type,80);}}type();},300);}
             if (lastUpdated) animateText(lastUpdated, 800);
 
             // Observe ALL text elements for scroll animation
