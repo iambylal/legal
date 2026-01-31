@@ -347,26 +347,22 @@
         .logo {
             font-size: 4.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #ff0000 50%, #5b0000 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
             opacity: 0;
             margin-bottom: 15px;
             letter-spacing: -3px;
-            animation: logoGlow 3s ease-in-out infinite,
-                logoFloat 4s ease-in-out infinite,
-                gradientText 5s ease infinite;
             text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
             position: relative;
             cursor: pointer;
+            /* Crisp text rendering */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         .logo:hover {
             animation: logoGlow 3s ease-in-out infinite,
                 logoFloat 4s ease-in-out infinite,
-                gradientText 5s ease infinite,
                 glitch 0.3s infinite,
                 shake 0.5s ease-in-out;
         }
