@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - GLOBAL OFFICIAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet>
     <style>
         * {
             margin: 0;
@@ -15,12 +15,31 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+            background: #000000;
             min-height: 100vh;
             color: #e0e0e0;
             line-height: 1.8;
             position: relative;
             overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #000000 0%, #1a0000 25%, #5b0000 50%, #1a0000 75%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .bg-particles {
@@ -31,36 +50,27 @@
             height: 100%;
             overflow: hidden;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.2;
         }
 
         .particle {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #5000bb;
+            background: #5b0000;
             border-radius: 50%;
             animation: float 20s infinite;
         }
 
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.2;
-            }
-
-            50% {
-                transform: translateY(-100px) translateX(50px);
-                opacity: 0.5;
-            }
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+            50% { transform: translateY(-120px) translateX(60px); opacity: 0.5; }
         }
 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 60px 30px;
         }
@@ -68,85 +78,135 @@
         .back-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: rgba(80, 0, 187, 0.15);
-            border: 1px solid #5000bb;
-            border-radius: 10px;
+            gap: 12px;
+            padding: 14px 28px;
+            background: rgba(91, 0, 0, 0.2);
+            border: 2px solid #5b0000;
+            border-radius: 12px;
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            margin-bottom: 40px;
+            transition: all 0.4s ease;
+            margin-bottom: 50px;
             backdrop-filter: blur(10px);
         }
 
         .back-button:hover {
-            background: rgba(80, 0, 187, 0.3);
-            transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(80, 0, 187, 0.4);
+            background: rgba(91, 0, 0, 0.4);
+            transform: translateX(-8px);
+            box-shadow: 0 8px 25px rgba(91, 0, 0, 0.5);
+            border-color: #ff0000;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #5000bb 50%, #8000ff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #ff0000 50%, #5b0000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(91, 0, 0, 0.6)); }
+            50% { filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.9)); }
         }
 
         .emoji-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 5rem;
+            margin-bottom: 25px;
             display: block;
-            filter: drop-shadow(0 0 30px rgba(80, 0, 187, 0.6));
+            filter: drop-shadow(0 0 35px rgba(91, 0, 0, 0.7));
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
 
         .last-updated {
             color: #888;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 300;
         }
 
         .content-card {
-            background: linear-gradient(135deg, rgba(20, 0, 40, 0.6) 0%, rgba(10, 0, 20, 0.4) 100%);
-            border: 1px solid rgba(80, 0, 187, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(30, 0, 10, 0.7) 0%, rgba(15, 0, 5, 0.5) 100%);
+            border: 2px solid rgba(91, 0, 0, 0.4);
+            border-radius: 28px;
+            padding: 60px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 50px rgba(91, 0, 0, 0.2);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .intro {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #b8b8b8;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(80, 0, 187, 0.2);
+            margin-bottom: 45px;
+            padding-bottom: 35px;
+            border-bottom: 2px solid rgba(91, 0, 0, 0.3);
+            line-height: 1.9;
         }
 
         .bot-name {
-            color: #5000bb;
+            color: #ff3333;
             font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #ffffff;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 4px solid #5000bb;
+            margin-top: 45px;
+            margin-bottom: 25px;
+            padding-left: 25px;
+            border-left: 5px solid #5b0000;
+            position: relative;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff0000, #5b0000);
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { box-shadow: 0 0 10px #5b0000; }
+            50% { box-shadow: 0 0 20px #ff0000; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         h2:first-of-type {
@@ -154,33 +214,46 @@
         }
 
         p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #c0c0c0;
         }
 
         ul {
-            margin: 20px 0;
-            padding-left: 30px;
+            margin: 25px 0;
+            padding-left: 35px;
         }
 
         li {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             color: #b0b0b0;
             position: relative;
-            padding-left: 10px;
+            padding-left: 15px;
+            transition: all 0.3s ease;
         }
 
         li::marker {
-            color: #5000bb;
+            color: #5b0000;
             font-weight: 700;
         }
 
+        li:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
         .highlight {
-            background: rgba(80, 0, 187, 0.2);
-            padding: 20px 25px;
-            border-radius: 12px;
-            border-left: 4px solid #5000bb;
-            margin: 25px 0;
+            background: linear-gradient(135deg, rgba(91, 0, 0, 0.3), rgba(255, 0, 0, 0.1));
+            padding: 25px 30px;
+            border-radius: 15px;
+            border-left: 5px solid #5b0000;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(91, 0, 0, 0.3);
+            animation: highlightGlow 3s infinite;
+        }
+
+        @keyframes highlightGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(91, 0, 0, 0.3); }
+            50% { box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5); }
         }
 
         strong {
@@ -190,55 +263,52 @@
 
         .footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(80, 0, 187, 0.2);
+            margin-top: 70px;
+            padding-top: 35px;
+            border-top: 2px solid rgba(91, 0, 0, 0.3);
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-link {
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #ff6666;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 20px;
+                padding: 40px 25px;
             }
 
             .content-card {
-                padding: 30px 25px;
-                border-radius: 16px;
+                padding: 40px 30px;
+                border-radius: 20px;
             }
 
             .title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .emoji-icon {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
-        }
-
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .content-card {
-            animation: fade-in 0.8s ease-out;
         }
     </style>
 </head>
-
 <body>
+    <div class=" bg-gradient">
+    </div>
     <div class="bg-particles" id="particles"></div>
 
     <div class="container">
@@ -255,65 +325,155 @@
 
         <div class="content-card">
             <div class="intro">
-                By inviting and using the bot <span class="bot-name">GLOBAL OFFICIAL</span> in your Discord server, you
-                agree to the following Terms of Service. If you do not agree, please do not use the Bot.
+                By inviting and using the <span class="bot-name">GLOBAL OFFICIAL</span> Discord bot in your server or
+                through direct messages, you agree to comply with the following Terms of Service. If you do not agree
+                with these terms, please do not use the Bot.
             </div>
 
             <h2>1. Acceptance of Terms</h2>
-            <p>Using the Bot means you agree to follow these Terms. These terms may be updated at any time without prior
-                notice. Continued use of the Bot after changes means you accept the updated Terms.</p>
+            <p>By adding the Bot to your Discord server or interacting with it, you acknowledge that you have read,
+                understood, and agree to be bound by these Terms of Service. These terms may be updated at any time
+                without prior notice. Your continued use of the Bot after any changes indicates your acceptance of the
+                updated terms.</p>
 
-            <h2>2. Use of the Bot</h2>
-            <p>You agree to:</p>
+            <h2>2. Bot Features & Services</h2>
+            <p>The Bot provides various features and services including, but not limited to:</p>
             <ul>
-                <li>Use the Bot in compliance with Discord's Terms of Service and Community Guidelines</li>
-                <li>Not misuse, exploit, or attempt to harm the Bot</li>
-                <li>Not use the Bot for illegal, abusive, or malicious activities</li>
+                <li><strong>Moderation Tools:</strong> Kick, ban, mute, unmute, role management, and channel lockdown
+                </li>
+                <li><strong>AI-Powered Interactions:</strong> Random AI responses, dead chat revival, and chaotic
+                    roasting mode (when enabled)</li>
+                <li><strong>Server Management:</strong> Server backups, role synchronization, voicemaster (temporary
+                    voice channels), and automation</li>
+                <li><strong>User Engagement:</strong> Confession systems, marriage system, ship calculator, avatar
+                    rating, memes, quotes</li>
+                <li><strong>Tracking & Logging:</strong> Server activity tracking, message snipe/edit snipe, member seen
+                    timestamps, counting games</li>
+                <li><strong>Utility Commands:</strong> Translation, user/server info, thread management, prayer
+                    reminders, Say/impersonate commands</li>
+                <li><strong>Entertainment:</strong> Truth or Dare, Hall of Fame, spam reactions, emoji management</li>
             </ul>
+
+            <h2>3. Acceptable Use</h2>
+            <p>You agree to use the Bot in compliance with:</p>
+            <ul>
+                <li>Discord's Terms of Service and Community Guidelines</li>
+                <li>All applicable local, state, national, and international laws</li>
+                <li>These Terms of Service</li>
+            </ul>
+
             <div class="highlight">
-                <strong>⚠️ Important:</strong> The Bot may be disabled or restricted for any user or server at any time
-                if misuse is detected.
+                <strong>⚠️ Prohibited Activities:</strong> You must not misuse, exploit, reverse-engineer, or attempt to
+                harm the Bot or its services. You must not use the Bot for illegal, abusive, malicious, or spam
+                activities. You must not use the Bot to harass, threaten, or violate the rights of others.
             </div>
 
-            <h2>3. Availability</h2>
-            <p>The Bot is provided "as is" with no guarantee of uptime, availability, or functionality. The Bot may go
-                offline for maintenance, updates, or unexpected issues.</p>
+            <h2>4. Moderation & Enforcement</h2>
+            <p>The Bot's moderation features are tools provided for server administrators and authorized moderators. The
+                Bot developers are not responsible for:</p>
+            <ul>
+                <li>Actions taken by server administrators or moderators using the Bot</li>
+                <li>Content posted by users in servers where the Bot is present</li>
+                <li>Disputes between server members or staff</li>
+            </ul>
+            <p>Server owners are responsible for properly configuring permissions and ensuring appropriate use of
+                moderation features.</p>
 
-            <h2>4. Data Usage</h2>
-            <p>The Bot may collect and store limited data necessary for its core functionality. Details about data
-                collection are described in the Privacy Policy.</p>
+            <h2>5. AI-Generated Content</h2>
+            <p>The Bot uses third-party AI services (Groq AI) to generate responses. Please note:</p>
+            <ul>
+                <li>AI responses are generated automatically and may not always be accurate, appropriate, or relevant
+                </li>
+                <li>The Bot developers are not responsible for AI-generated content</li>
+                <li>Users may disable AI features in specific channels using bot commands</li>
+                <li>"Chaotic Mode" (roasting feature) can be toggled by bot owners and may generate harsh or sarcastic
+                    responses</li>
+            </ul>
 
-            <h2>5. Termination</h2>
-            <p>We reserve the right to:</p>
+            <h2>6. Server Backups</h2>
+            <p>The Bot offers server backup functionality. Please understand:</p>
+            <ul>
+                <li>Backups are stored locally and are not guaranteed to be permanent</li>
+                <li>The Bot developers are not liable for data loss, corruption, or failed restorations</li>
+                <li>Backups may not capture all server data or settings</li>
+                <li>Server owners should maintain their own independent backups</li>
+            </ul>
+
+            <h2>7. Availability & Service Quality</h2>
+            <p>The Bot is provided "as is" without any warranties or guarantees of:</p>
+            <ul>
+                <li>Uptime, availability, or accessibility</li>
+                <li>Error-free operation or bug-free performance</li>
+                <li>Continuous or uninterrupted service</li>
+            </ul>
+            <p>The Bot may go offline for maintenance, updates, technical issues, or be discontinued at any time without
+                prior notice.</p>
+
+            <h2>8. Termination & Restrictions</h2>
+            <p>We reserve the right to, at our sole discretion:</p>
             <ul>
                 <li>Remove the Bot from any server</li>
-                <li>Block any user or server without notice if these Terms are violated</li>
+                <li>Block any user or server from using the Bot</li>
+                <li>Terminate access without notice or explanation</li>
+                <li>Modify or discontinue any Bot features</li>
+            </ul>
+            <p>Such actions may be taken if we detect violations of these Terms, abuse, or for any other reason.</p>
+
+            <h2>9. User Content & Responsibility</h2>
+            <p>Users are solely responsible for:</p>
+            <ul>
+                <li>Content they submit through Bot commands (confessions, quotes, suggestions, etc.)</li>
+                <li>Actions they take using Bot features</li>
+                <li>Ensuring they have necessary permissions in their servers</li>
+            </ul>
+            <p>The Bot developers do not pre-screen, monitor, or control user-generated content.</p>
+
+            <h2>10. Third-Party Services</h2>
+            <p>The Bot integrates with third-party services including:</p>
+            <ul>
+                <li>Groq AI (for AI responses)</li>
+                <li>Image/GIF APIs (for meme generation and entertainment features)</li>
+                <li>Discord API</li>
+            </ul>
+            <p>These services have their own terms and privacy policies. We are not responsible for third-party service
+                availability, changes, or policies.</p>
+
+            <h2>11. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, the Bot developers and contributors are not liable for:</p>
+            <ul>
+                <li>Any direct, indirect, incidental, special, or consequential damages</li>
+                <li>Loss of data, profits, or business opportunities</li>
+                <li>Server raids, spam, or malicious activities</li>
+                <li>Errors, bugs, or feature malfunctions</li>
+                <li>Actions taken by users of the Bot</li>
             </ul>
 
-            <h2>6. Liability</h2>
-            <p>The developers of the Bot are not responsible for:</p>
-            <ul>
-                <li>Any loss, damage, or issues caused by using the Bot</li>
-                <li>Actions taken by users through the Bot</li>
-            </ul>
             <div class="highlight">
-                <strong>⚠️ Use the Bot at your own risk.</strong>
+                <strong>⚠️ Use at Your Own Risk:</strong> You acknowledge that you use the Bot entirely at your own risk
+                and discretion.
             </div>
 
-            <h2>7. Contact</h2>
-            <p>If you have questions or concerns about these Terms, you may contact the Bot's developer through Discord.
-            </p>
+            <h2>12. Changes to Terms</h2>
+            <p>These Terms of Service may be modified, updated, or revised at any time. Changes will be effective
+                immediately upon posting. Your continued use of the Bot after changes constitutes acceptance of the
+                modified terms.</p>
+
+            <h2>13. Contact & Support</h2>
+            <p>For questions, concerns, or support regarding these Terms or the Bot, please contact us through our <a
+                    href="https://discord.globalserver.one" target="_blank" class="contact-link">Discord Server</a>.</p>
 
             <div class="footer">
-                © 2026 GLOBAL OFFICIAL Bot. All rights reserved.
+                © 2026 GLOBAL OFFICIAL Bot. All rights reserved.<br>
+                <a href="https://discord.globalserver.one" target="_blank"
+                    class="contact-link">discord.globalserver.one</a>
             </div>
         </div>
     </div>
 
     <script>
-        // Generate floating particles
+        // Generate particles
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 40;
+        const particleCount = 50;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -324,7 +484,23 @@
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
+
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideIn 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('h2').forEach(el => observer.observe(el));
     </script>
-</body>
+    </body>
 
 </html>
