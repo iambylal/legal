@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +15,44 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+            background: #000000;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Animated background particles */
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #000000 0%, #1a0000 25%, #5b0000 50%, #1a0000 75%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animated blood particles */
         .bg-particles {
             position: fixed;
             top: 0;
@@ -32,81 +60,188 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 0;
+            z-index: 1;
         }
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #5000bb;
+            width: 3px;
+            height: 3px;
+            background: #5b0000;
             border-radius: 50%;
-            opacity: 0.3;
-            animation: float 20s infinite;
+            box-shadow: 0 0 10px #5b0000;
+            opacity: 0.4;
+            animation: float 25s infinite;
+        }
+
+        .particle.glow {
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #5b0000;
+            animation: pulse 2s infinite, float 25s infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-            50% { transform: translateY(-100px) translateX(50px); opacity: 0.6; }
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            25% {
+                transform: translateY(-150px) translateX(100px) rotate(90deg);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(-300px) translateX(-50px) rotate(180deg);
+                opacity: 0.4;
+            }
+
+            75% {
+                transform: translateY(-150px) translateX(-100px) rotate(270deg);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.5);
+            }
         }
 
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             text-align: center;
-            padding: 40px 20px;
-            max-width: 800px;
+            padding: 60px 30px;
+            max-width: 900px;
             width: 100%;
         }
 
         .logo {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #5000bb 50%, #8000ff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #ff0000 50%, #5b0000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-            animation: glow 3s ease-in-out infinite;
+            margin-bottom: 15px;
+            letter-spacing: -3px;
+            animation: logoGlow 3s ease-in-out infinite, logoFloat 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
         }
 
-        @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(80, 0, 187, 0.5)); }
-            50% { filter: drop-shadow(0 0 40px rgba(80, 0, 187, 0.8)); }
+        @keyframes logoGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 30px rgba(91, 0, 0, 0.6));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 60px rgba(255, 0, 0, 0.9));
+            }
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 300;
-            color: #b8b8b8;
-            margin-bottom: 60px;
-            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #5b0000, #ff0000, #5b0000, transparent);
+            margin: 40px auto;
+            border-radius: 4px;
+            animation: dividerGlow 2s infinite, dividerExpand 3s ease-in-out infinite;
+        }
+
+        @keyframes dividerGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px #5b0000;
+            }
+
+            50% {
+                box-shadow: 0 0 30px #ff0000;
+            }
+        }
+
+        @keyframes dividerExpand {
+
+            0%,
+            100% {
+                width: 80px;
+            }
+
+            50% {
+                width: 120px;
+            }
         }
 
         .buttons-container {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
         }
 
         .legal-button {
             position: relative;
-            padding: 25px 50px;
-            font-size: 1.3rem;
+            padding: 30px 60px;
+            font-size: 1.4rem;
             font-weight: 700;
             text-decoration: none;
             color: #ffffff;
-            background: linear-gradient(135deg, rgba(80, 0, 187, 0.2) 0%, rgba(128, 0, 255, 0.1) 100%);
-            border: 2px solid #5000bb;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(91, 0, 0, 0.3) 0%, rgba(255, 0, 0, 0.1) 100%);
+            border: 3px solid #5b0000;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             overflow: hidden;
-            min-width: 250px;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(91, 0, 0, 0.3);
         }
 
         .legal-button::before {
@@ -117,33 +252,69 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(80, 0, 187, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, transparent 70%);
             transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            transition: width 0.7s, height 0.7s;
         }
 
-        .legal-button:hover::before {
-            width: 400px;
-            height: 400px;
+        .legal-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
         }
 
         .legal-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            border-color: #8000ff;
-            box-shadow: 0 20px 60px rgba(80, 0, 187, 0.6),
-                        0 0 40px rgba(128, 0, 255, 0.4);
-            background: linear-gradient(135deg, rgba(80, 0, 187, 0.4) 0%, rgba(128, 0, 255, 0.2) 100%);
+            transform: translateY(-12px) scale(1.08);
+            border-color: #ff0000;
+            box-shadow: 0 30px 80px rgba(255, 0, 0, 0.7),
+                0 0 60px rgba(91, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(91, 0, 0, 0.6) 0%, rgba(255, 0, 0, 0.3) 100%);
+        }
+
+        .legal-button:hover::before {
+            width: 600px;
+            height: 600px;
         }
 
         .legal-button:active {
-            transform: translateY(-4px) scale(1.02);
+            transform: translateY(-6px) scale(1.04);
         }
 
         .button-icon {
             display: inline-block;
-            margin-right: 12px;
-            font-size: 1.5rem;
+            margin-right: 15px;
+            font-size: 1.8rem;
             vertical-align: middle;
+            animation: iconBounce 2s infinite;
+        }
+
+        @keyframes iconBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
         }
 
         .button-text {
@@ -151,25 +322,45 @@
             z-index: 1;
         }
 
-        .footer {
+        .server-link {
             margin-top: 60px;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        .server-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: rgba(91, 0, 0, 0.2);
+            border: 2px solid rgba(91, 0, 0, 0.5);
+            border-radius: 50px;
+            color: #ff6666;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .server-button:hover {
+            background: rgba(91, 0, 0, 0.4);
+            border-color: #5b0000;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(91, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            margin-top: 50px;
             font-size: 0.9rem;
-            color: #666;
+            color: #555;
             font-weight: 300;
+            animation: fadeInUp 1s ease-out 1.2s backwards;
         }
 
-        .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #5000bb, transparent);
-            margin: 30px auto;
-            border-radius: 3px;
-        }
-
-        /* Responsive design */
+        /* Responsive */
         @media (max-width: 768px) {
             .logo {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
             .subtitle {
@@ -178,42 +369,29 @@
 
             .buttons-container {
                 flex-direction: column;
-                gap: 20px;
+                gap: 25px;
             }
 
             .legal-button {
                 min-width: auto;
                 width: 100%;
-                max-width: 350px;
+                max-width: 400px;
+                padding: 25px 40px;
             }
-        }
-
-        /* Floating animation for buttons */
-        @keyframes float-button {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .buttons-container {
-            animation: fade-in 1s ease-out;
-        }
-
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
+
 <body>
-    <!-- Animated background particles -->
+    <div class="bg-gradient"></div>
     <div class="bg-particles" id="particles"></div>
 
     <div class="container">
         <h1 class="logo">LEGAL</h1>
         <p class="subtitle">GLOBAL OFFICIAL BOT</p>
-        
+
         <div class="divider"></div>
-        
+
         <div class="buttons-container">
             <a href="tos.html" class="legal-button">
                 <span class="button-text">
@@ -221,7 +399,7 @@
                     Terms of Service
                 </span>
             </a>
-            
+
             <a href="privacy.html" class="legal-button">
                 <span class="button-text">
                     <span class="button-icon">🔐</span>
@@ -229,26 +407,33 @@
                 </span>
             </a>
         </div>
-        
+
+        <div class="server-link">
+            <a href="https://discord.globalserver.one" target="_blank" class="server-button">
+                🔗 Join Our Discord Server
+            </a>
+        </div>
+
         <div class="footer">
             Last Updated: January 31, 2026
         </div>
     </div>
 
     <script>
-        // Generate floating particles
+        // Generate floating particles with variety
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
+        const particleCount = 60;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
-            particle.className = 'particle';
+            particle.className = i % 5 === 0 ? 'particle glow' : 'particle';
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particle.style.animationDelay = Math.random() * 25 + 's';
+            particle.style.animationDuration = (20 + Math.random() * 15) + 's';
             particlesContainer.appendChild(particle);
         }
     </script>
 </body>
+
 </html>
