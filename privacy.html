@@ -15,12 +15,39 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+            background: #000000;
             min-height: 100vh;
             color: #e0e0e0;
             line-height: 1.8;
             position: relative;
             overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #000000 0%, #1a0000 25%, #5b0000 50%, #1a0000 75%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .bg-particles {
@@ -31,14 +58,14 @@
             height: 100%;
             overflow: hidden;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.2;
         }
 
         .particle {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #5000bb;
+            background: #5b0000;
             border-radius: 50%;
             animation: float 20s infinite;
         }
@@ -52,7 +79,7 @@
             }
 
             50% {
-                transform: translateY(-100px) translateX(50px);
+                transform: translateY(-120px) translateX(60px);
                 opacity: 0.5;
             }
         }
@@ -60,7 +87,7 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 60px 30px;
         }
@@ -68,114 +95,233 @@
         .back-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: rgba(80, 0, 187, 0.15);
-            border: 1px solid #5000bb;
-            border-radius: 10px;
+            gap: 12px;
+            padding: 14px 28px;
+            background: rgba(91, 0, 0, 0.2);
+            border: 2px solid #5b0000;
+            border-radius: 12px;
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            margin-bottom: 40px;
+            transition: all 0.4s ease;
+            margin-bottom: 50px;
             backdrop-filter: blur(10px);
         }
 
         .back-button:hover {
-            background: rgba(80, 0, 187, 0.3);
-            transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(80, 0, 187, 0.4);
+            background: rgba(91, 0, 0, 0.4);
+            transform: translateX(-8px);
+            box-shadow: 0 8px 25px rgba(91, 0, 0, 0.5);
+            border-color: #ff0000;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #5000bb 50%, #8000ff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #ff0000 50%, #5b0000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 20px rgba(91, 0, 0, 0.6));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+            }
         }
 
         .emoji-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 5rem;
+            margin-bottom: 25px;
             display: block;
-            filter: drop-shadow(0 0 30px rgba(80, 0, 187, 0.6));
+            filter: drop-shadow(0 0 35px rgba(91, 0, 0, 0.7));
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
         }
 
         .last-updated {
             color: #888;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 300;
         }
 
         .content-card {
-            background: linear-gradient(135deg, rgba(20, 0, 40, 0.6) 0%, rgba(10, 0, 20, 0.4) 100%);
-            border: 1px solid rgba(80, 0, 187, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(30, 0, 10, 0.7) 0%, rgba(15, 0, 5, 0.5) 100%);
+            border: 2px solid rgba(91, 0, 0, 0.4);
+            border-radius: 28px;
+            padding: 60px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 50px rgba(91, 0, 0, 0.2);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .intro {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #b8b8b8;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(80, 0, 187, 0.2);
+            margin-bottom: 45px;
+            padding-bottom: 35px;
+            border-bottom: 2px solid rgba(91, 0, 0, 0.3);
+            line-height: 1.9;
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #ffffff;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 4px solid #5000bb;
+            margin-top: 45px;
+            margin-bottom: 25px;
+            padding-left: 25px;
+            border-left: 5px solid #5b0000;
+            position: relative;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff0000, #5b0000);
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px #5b0000;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #ff0000;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         h2:first-of-type {
             margin-top: 0;
         }
 
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ff6666;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
         p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #c0c0c0;
         }
 
         ul {
-            margin: 20px 0;
-            padding-left: 30px;
+            margin: 25px 0;
+            padding-left: 35px;
         }
 
         li {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             color: #b0b0b0;
             position: relative;
-            padding-left: 10px;
+            padding-left: 15px;
+            transition: all 0.3s ease;
         }
 
         li::marker {
-            color: #5000bb;
+            color: #5b0000;
             font-weight: 700;
         }
 
+        li:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
         .highlight {
-            background: rgba(80, 0, 187, 0.2);
-            padding: 20px 25px;
-            border-radius: 12px;
-            border-left: 4px solid #5000bb;
-            margin: 25px 0;
+            background: linear-gradient(135deg, rgba(91, 0, 0, 0.3), rgba(255, 0, 0, 0.1));
+            padding: 25px 30px;
+            border-radius: 15px;
+            border-left: 5px solid #5b0000;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(91, 0, 0, 0.3);
+            animation: highlightGlow 3s infinite;
+        }
+
+        @keyframes highlightGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 5px 20px rgba(91, 0, 0, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
+            }
         }
 
         strong {
@@ -185,55 +331,64 @@
 
         .footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(80, 0, 187, 0.2);
+            margin-top: 70px;
+            padding-top: 35px;
+            border-top: 2px solid rgba(91, 0, 0, 0.3);
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-link {
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #ff6666;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .data-category {
+            background: rgba(91, 0, 0, 0.15);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid rgba(91, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 20px;
+                padding: 40px 25px;
             }
 
             .content-card {
-                padding: 30px 25px;
-                border-radius: 16px;
+                padding: 40px 30px;
+                border-radius: 20px;
             }
 
             .title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .emoji-icon {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
             h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+                font-size: 1.6rem;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            h3 {
+                font-size: 1.2rem;
             }
-        }
-
-        .content-card {
-            animation: fade-in 0.8s ease-out;
         }
     </style>
 </head>
 
 <body>
+    <div class="bg-gradient"></div>
     <div class="bg-particles" id="particles"></div>
 
     <div class="container">
@@ -250,68 +405,207 @@
 
         <div class="content-card">
             <div class="intro">
-                Your privacy matters. This document explains what data the Bot collects and how it is used.
+                Your privacy is important to us. This Privacy Policy explains what data the <span
+                    class="contact-link">GLOBAL OFFICIAL</span> Discord bot collects, how it is used, stored, and
+                protected. By using the Bot, you consent to the data practices described in this policy.
             </div>
 
             <h2>1. Data We Collect</h2>
-            <p>The Bot may collect the following data only when required for functionality:</p>
-            <ul>
-                <li>Discord User IDs</li>
-                <li>Discord Server IDs</li>
-                <li>Channel IDs</li>
-                <li>Message IDs (only when commands or features require it)</li>
-            </ul>
-            <div class="highlight">
-                <strong>⚠️ Important:</strong> The Bot does not read or store messages unless explicitly required for a
-                command.
+            <p>The Bot collects and stores the following types of data to provide its features and functionality:</p>
+
+            <div class="data-category">
+                <h3>1.1 Automatically Collected Data</h3>
+                <ul>
+                    <li><strong>Discord User IDs</strong> - To identify users and track their interactions</li>
+                    <li><strong>Discord Server (Guild) IDs</strong> - To provide server-specific configurations</li>
+                    <li><strong>Channel IDs</strong> - For channel-specific features and whitelisting</li>
+                    <li><strong>Role IDs</strong> - For moderation role configurations and role management features</li>
+                    <li><strong>Message IDs</strong> - For snipe/edit snipe features, quote system, and logging</li>
+                    <li><strong>Timestamps</strong> - For cooldowns, activity tracking, and "last seen" functionality
+                    </li>
+                </ul>
             </div>
 
-            <h2>2. How Data Is Used</h2>
+            <div class="data-category">
+                <h3>1.2 User-Generated Content</h3>
+                <ul>
+                    <li><strong>Message Content</strong> - Stored temporarily for snipe/edit snipe features (limited
+                        history)</li>
+                    <li><strong>Confessions</strong> - Anonymous confession messages with minimal metadata</li>
+                    <li><strong>Quotes</strong> - User-saved quotes with associated content and metadata</li>
+                    <li><strong>Marriage Data</strong> - User partnerships created through the marriage system</li>
+                    <li><strong>Suggestions</strong> - Suggestions submitted through the suggestion system</li>
+                    <li><strong>Custom Prefixes</strong> - Server-specific command prefixes</li>
+                    <li><strong>Bot Configuration</strong> - Settings for moderation, logging, automation, and features
+                    </li>
+                </ul>
+            </div>
+
+            <div class="data-category">
+                <h3>1.3 Activity & Tracking Data</h3>
+                <ul>
+                    <li><strong>Server Activity</strong> - Message counts, user activity timestamps for analytics</li>
+                    <li><strong>Last Seen</strong> - Timestamps of when users were last active</li>
+                    <li><strong>Counting Game Progress</strong> - Current counts and user participation data</li>
+                    <li><strong>Voicemaster Data</strong> - Temporary voice channel ownership and configurations</li>
+                    <li><strong>Moderation History</strong> - Active mutes, role backups during mutes, moderation
+                        actions (if logging enabled)</li>
+                    <li><strong>Hall of Fame</strong> - Messages with high reaction counts</li>
+                </ul>
+            </div>
+
+            <div class="data-category">
+                <h3>1.4 Server Backup Data</h3>
+                <ul>
+                    <li><strong>Server Structure</strong> - Channels, roles, permissions when backups are created</li>
+                    <li><strong>Server Settings</strong> - Server name, icon, and configuration</li>
+                    <li><strong>Member Roles</strong> - Role assignments for backup/restoration purposes</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <strong>⚠️ Important:</strong> The Bot does NOT read or store message content unless explicitly required
+                for a command or feature you actively use (e.g., snipe, quote, confession, AI responses when
+                whitelisted).
+            </div>
+
+            <h2>2. How We Use Your Data</h2>
             <p>Collected data is used strictly to:</p>
             <ul>
-                <li>Provide bot features and commands</li>
-                <li>Store user or server preferences</li>
-                <li>Improve performance and functionality</li>
+                <li>Provide bot features, commands, and functionality</li>
+                <li>Store server and user preferences and configurations</li>
+                <li>Track activity for analytics and leaderboards</li>
+                <li>Enable moderation tools (mute tracking, role restoration)</li>
+                <li>Backup and restore server configurations</li>
+                <li>Improve bot performance, reliability, and user experience</li>
+                <li>Generate AI responses (when AI features are enabled in whitelisted channels)</li>
             </ul>
-            <p><strong>Data is never sold or shared with third parties.</strong></p>
 
-            <h2>3. Data Storage</h2>
+            <div class="highlight">
+                <strong>✅ We Never:</strong>
+                <ul style="margin-bottom: 0;">
+                    <li>Sell your data to third parties</li>
+                    <li>Share your data except as required to provide Bot services</li>
+                    <li>Use your data for unrelated advertising or marketing</li>
+                </ul>
+            </div>
+
+            <h2>3. Data Storage & Security</h2>
+            <p>Data is stored securely using the following methods:</p>
             <ul>
-                <li>Data is stored securely</li>
-                <li>Data is retained only as long as necessary</li>
-                <li>Unused or unnecessary data may be periodically deleted</li>
+                <li><strong>SQLite Databases</strong> - Local encrypted databases (server_activity.db, server_backup.db,
+                    moderation.db, etc.)</li>
+                <li><strong>JSON Files</strong> - Configuration files for settings and preferences</li>
+                <li><strong>Access Control</strong> - Data is only accessible to Bot developers and authorized systems
+                </li>
             </ul>
+            <p>While we implement industry-standard security measures, no system is 100% secure. Data is stored on
+                secure private servers with restricted access.</p>
 
-            <h2>4. Data Removal</h2>
-            <p>Server owners or users may request:</p>
+            <h2>4. Data Retention</h2>
+            <p>Data retention varies by feature:</p>
             <ul>
-                <li>Data deletion</li>
-                <li>Bot removal from their server</li>
+                <li><strong>Permanent (until manual deletion):</strong> Server configurations, prefixes, role settings,
+                    backups</li>
+                <li><strong>Until feature is disabled:</strong> Confessions, marriages, quotes, activity tracking</li>
+                <li><strong>Temporary (limited history):</strong> Snipe data (last 50 messages), AI response cooldowns
+                    (30 minutes)</li>
+                <li><strong>Automatic cleanup:</strong> Expired mutes, inactive voicemaster channels, old counting data
+                </li>
             </ul>
-            <p>Once the Bot is removed from a server, related server data may be deleted automatically or upon request.
-            </p>
+            <p>Unused or unnecessary data may be periodically purged to optimize database performance.</p>
 
-            <h2>5. Third-Party Services</h2>
-            <p>The Bot may interact with third-party APIs (e.g., image or GIF APIs). These services may have their own
-                privacy policies.</p>
+            <h2>5. Third-Party Services & APIs</h2>
+            <p>The Bot interacts with the following third-party services:</p>
+            <ul>
+                <li><strong>Groq AI</strong> - Provides AI-powered responses when AI features are enabled. Messages sent
+                    to Groq may be subject to their privacy policy.</li>
+                <li><strong>Discord API</strong> - All bot interactions rely on Discord's platform and are subject to
+                    Discord's Privacy Policy.</li>
+                <li><strong>Image/GIF APIs</strong> - External services for meme generation, image processing, and
+                    entertainment features.</li>
+            </ul>
+            <p>These third-party services have their own terms and privacy policies. We recommend reviewing them if you
+                use features that rely on these services.</p>
 
-            <h2>6. Changes to This Policy</h2>
-            <p>This Privacy Policy may be updated at any time. Continued use of the Bot indicates acceptance of the
-                updated policy.</p>
+            <h2>6. User Rights & Data Control</h2>
+            <p>You have the following rights regarding your data:</p>
 
-            <h2>7. Contact</h2>
-            <p>If you have questions about data or privacy, contact the Bot developer via Discord.</p>
+            <h3>6.1 Data Access</h3>
+            <p>You may request to see what data we have stored about you or your server.</p>
+
+            <h3>6.2 Data Deletion</h3>
+            <p>You may request deletion of your data by:</p>
+            <ul>
+                <li>Removing the Bot from your server (server data will be retained for backups unless deletion is
+                    requested)</li>
+                <li>Contacting us through our <a href="https://discord.globalserver.one" target="_blank"
+                        class="contact-link">Discord Server</a></li>
+            </ul>
+
+            <h3>6.3 Opt-Out</h3>
+            <p>You can opt out of specific features:</p>
+            <ul>
+                <li>AI features can be disabled by not whitelisting channels</li>
+                <li>Activity tracking can be disabled per server</li>
+                <li>Individual features can be disabled through bot commands</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>📌 Note:</strong> Once the Bot is removed from a server, server-specific data may be
+                automatically deleted or retained for a limited time to allow for restoration. Contact us to request
+                immediate permanent deletion.
+            </div>
+
+            <h2>7. Children's Privacy</h2>
+            <p>The Bot is not directed at children under the age of 13. We do not knowingly collect data from children
+                under 13. Discord's Terms of Service require users to be 13 or older. If we become aware that we have
+                collected data from a child under 13, we will take steps to delete such data.</p>
+
+            <h2>8. Data Sharing & Disclosure</h2>
+            <p>We do not sell, trade, or otherwise transfer your data to outside parties except:</p>
+            <ul>
+                <li><strong>To Provide Services:</strong> Data processed by third-party APIs (Groq AI, Discord) as
+                    necessary for bot functionality</li>
+                <li><strong>Legal Requirements:</strong> If required by law, court order, or government regulation</li>
+                <li><strong>Safety & Security:</strong> To protect against fraud, abuse, or security threats</li>
+            </ul>
+
+            <h2>9. International Data Transfers</h2>
+            <p>Data may be stored and processed on servers located in various jurisdictions. By using the Bot, you
+                consent to the transfer of your data to these locations.</p>
+
+            <h2>10. Changes to This Policy</h2>
+            <p>This Privacy Policy may be updated at any time to reflect changes in:</p>
+            <ul>
+                <li>Bot features and functionality</li>
+                <li>Data collection practices</li>
+                <li>Legal or regulatory requirements</li>
+            </ul>
+            <p>Changes will be effective immediately upon posting. Continued use of the Bot after changes indicates
+                acceptance of the updated policy. We encourage you to review this policy periodically.</p>
+
+            <h2>11. Contact Us</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or your data, please contact
+                us:</p>
+            <ul>
+                <li><strong>Discord Server:</strong> <a href="https://discord.globalserver.one" target="_blank"
+                        class="contact-link">discord.globalserver.one</a></li>
+                <li><strong>Method:</strong> Open a support ticket or DM an administrator</li>
+            </ul>
 
             <div class="footer">
-                © 2026 GLOBAL OFFICIAL Bot. All rights reserved.
+                © 2026 GLOBAL OFFICIAL Bot. All rights reserved.<br>
+                <a href="https://discord.globalserver.one" target="_blank"
+                    class="contact-link">discord.globalserver.one</a>
             </div>
         </div>
     </div>
 
     <script>
-        // Generate floating particles
+        // Generate particles
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 40;
+        const particleCount = 50;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -322,6 +616,22 @@
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
+
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideIn 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('h2, h3').forEach(el => observer.observe(el));
     </script>
 </body>
 
