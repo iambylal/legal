@@ -351,9 +351,10 @@
             opacity: 0;
             margin-bottom: 15px;
             letter-spacing: -3px;
-            text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.3);
             position: relative;
             cursor: pointer;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
             /* Crisp text rendering */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -1222,10 +1223,9 @@
                     if (index < chars.length) {
                         const span = document.createElement('span');
                         span.textContent = chars[index] === ' ' ? '\u00A0' : chars[index];
-                        span.style.display = 'inline-block';
                         span.style.opacity = '0';
                         span.style.transform = 'translateX(-20px) translateY(8px)';
-                        span.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                        span.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                         element.appendChild(span);
 
                         // Trigger smooth animation
@@ -1237,7 +1237,7 @@
                         });
 
                         index++;
-                        setTimeout(revealNext, 40); // Smooth 40ms per character
+                        setTimeout(revealNext, 60); // Fast 10ms per character
                     }
                 }
                 revealNext();
