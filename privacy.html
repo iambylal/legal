@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - GLOBAL OFFICIAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #5000bb;
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.2;
+            }
+
+            50% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0.5;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(80, 0, 187, 0.15);
+            border: 1px solid #5000bb;
+            border-radius: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(80, 0, 187, 0.3);
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(80, 0, 187, 0.4);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #5000bb 50%, #8000ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .emoji-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 30px rgba(80, 0, 187, 0.6));
+        }
+
+        .last-updated {
+            color: #888;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, rgba(20, 0, 40, 0.6) 0%, rgba(10, 0, 20, 0.4) 100%);
+            border: 1px solid rgba(80, 0, 187, 0.3);
+            border-radius: 24px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #b8b8b8;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(80, 0, 187, 0.2);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 4px solid #5000bb;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #c0c0c0;
+        }
+
+        ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 15px;
+            color: #b0b0b0;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        li::marker {
+            color: #5000bb;
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: rgba(80, 0, 187, 0.2);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border-left: 4px solid #5000bb;
+            margin: 25px 0;
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(80, 0, 187, 0.2);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .content-card {
+                padding: 30px 25px;
+                border-radius: 16px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .emoji-icon {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-card {
+            animation: fade-in 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-particles" id="particles"></div>
+
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <span>←</span>
+            <span>Back to Legal</span>
+        </a>
+
+        <div class="header">
+            <span class="emoji-icon">🔐</span>
+            <h1 class="title">Privacy Policy</h1>
+            <p class="last-updated">Last Updated: January 31, 2026</p>
+        </div>
+
+        <div class="content-card">
+            <div class="intro">
+                Your privacy matters. This document explains what data the Bot collects and how it is used.
+            </div>
+
+            <h2>1. Data We Collect</h2>
+            <p>The Bot may collect the following data only when required for functionality:</p>
+            <ul>
+                <li>Discord User IDs</li>
+                <li>Discord Server IDs</li>
+                <li>Channel IDs</li>
+                <li>Message IDs (only when commands or features require it)</li>
+            </ul>
+            <div class="highlight">
+                <strong>⚠️ Important:</strong> The Bot does not read or store messages unless explicitly required for a
+                command.
+            </div>
+
+            <h2>2. How Data Is Used</h2>
+            <p>Collected data is used strictly to:</p>
+            <ul>
+                <li>Provide bot features and commands</li>
+                <li>Store user or server preferences</li>
+                <li>Improve performance and functionality</li>
+            </ul>
+            <p><strong>Data is never sold or shared with third parties.</strong></p>
+
+            <h2>3. Data Storage</h2>
+            <ul>
+                <li>Data is stored securely</li>
+                <li>Data is retained only as long as necessary</li>
+                <li>Unused or unnecessary data may be periodically deleted</li>
+            </ul>
+
+            <h2>4. Data Removal</h2>
+            <p>Server owners or users may request:</p>
+            <ul>
+                <li>Data deletion</li>
+                <li>Bot removal from their server</li>
+            </ul>
+            <p>Once the Bot is removed from a server, related server data may be deleted automatically or upon request.
+            </p>
+
+            <h2>5. Third-Party Services</h2>
+            <p>The Bot may interact with third-party APIs (e.g., image or GIF APIs). These services may have their own
+                privacy policies.</p>
+
+            <h2>6. Changes to This Policy</h2>
+            <p>This Privacy Policy may be updated at any time. Continued use of the Bot indicates acceptance of the
+                updated policy.</p>
+
+            <h2>7. Contact</h2>
+            <p>If you have questions about data or privacy, contact the Bot developer via Discord.</p>
+
+            <div class="footer">
+                © 2026 GLOBAL OFFICIAL Bot. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+
+</html>
