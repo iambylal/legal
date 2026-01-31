@@ -21,9 +21,22 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
             cursor: none;
+        }
+
+        /* Reading Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #5b0000, #ff0000, #ff6666);
+            z-index: 10000;
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #5b0000;
+            transition: width 0.1s ease-out;
         }
 
         /* Custom Cursor */
@@ -48,6 +61,55 @@
             pointer-events: none;
             z-index: 9998;
             transition: all 0.3s ease;
+        }
+
+        /* Blood Trail Effect */
+        .blood-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ff0000, #5b0000);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.8;
+            animation: trailFade 1s ease-out forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: fixed;
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9996;
+            animation: rippleExpand 1s ease-out forwards;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
         }
 
         @keyframes cursorPulse {
@@ -522,6 +584,148 @@
             }
         }
 
+        /* Bot Owner Profile Card */
+        .owner-card {
+            background: linear-gradient(135deg, rgba(91, 0, 0, 0.3) 0%, rgba(255, 0, 0, 0.1) 100%);
+            border: 3px solid #5b0000;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 500px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(91, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.4s backwards, cardFloat 5s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .owner-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+            animation: cardShimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes cardShimmer {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .owner-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff0000;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5);
+            animation: avatarFloat 3s ease-in-out infinite, avatarGlow 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #5b0000, #000000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        @keyframes avatarFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        @keyframes avatarGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 10px 60px rgba(255, 0, 0, 0.9), 0 0 80px rgba(255, 0, 0, 0.6);
+            }
+        }
+
+        .owner-name {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #ff0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .owner-title {
+            font-size: 1.1rem;
+            color: #ff6666;
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .owner-social {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(91, 0, 0, 0.3);
+            border: 2px solid #5b0000;
+            border-radius: 12px;
+            color: #ff6666;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #ff0000;
+            color: #ffffff;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6);
+        }
+
         .buttons-container {
             display: flex;
             gap: 40px;
@@ -832,11 +1036,21 @@
                 max-width: 400px;
                 padding: 25px 40px;
             }
+
+            .owner-card {
+                padding: 30px;
+            }
+
+            .owner-avatar {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="progress-bar" id="progressBar"></div>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <div class="bg-gradient"></div>
@@ -847,6 +1061,24 @@
         <p class="subtitle">GLOBAL OFFICIAL BOT</p>
 
         <div class="divider"></div>
+
+        <!-- Bot Owner Profile Card -->
+        <div class="owner-card">
+            <div class="owner-avatar">👤</div>
+            <h3 class="owner-name">Bot Owner</h3>
+            <p class="owner-title">Developer & Creator</p>
+            <div class="owner-social">
+                <a href="https://discord.globalserver.one" target="_blank" class="social-link" title="Discord">
+                    💬
+                </a>
+                <a href="https://discord.globalserver.one" target="_blank" class="social-link" title="Server">
+                    🌐
+                </a>
+                <a href="https://discord.globalserver.one" target="_blank" class="social-link" title="Support">
+                    ⚙️
+                </a>
+            </div>
+        </div>
 
         <div class="buttons-container">
             <a href="tos.html" class="legal-button">
@@ -876,11 +1108,24 @@
     </div>
 
     <script>
-        // Custom cursor
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Custom cursor with blood trail
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
 
         document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
 
@@ -888,7 +1133,41 @@
                 cursorFollower.style.left = e.clientX + 'px';
                 cursorFollower.style.top = e.clientY + 'px';
             }, 100);
+
+            // Blood trail effect
+            if (Math.random() > 0.7) {
+                createBloodTrail(e.clientX, e.clientY);
+            }
         });
+
+        function createBloodTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'blood-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+
+        // Ripple click effect
+        document.addEventListener('click', (e) => {
+            createRipple(e.clientX, e.clientY);
+        });
+
+        function createRipple(x, y) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = (x - 100) + 'px';
+            ripple.style.top = (y - 100) + 'px';
+            document.body.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        }
 
         // Generate enhanced particles
         const particlesContainer = document.getElementById('particles');
