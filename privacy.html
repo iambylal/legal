@@ -336,6 +336,7 @@
             margin-bottom: 20px;
             letter-spacing: -2px;
             animation: titleGlow 3s ease-in-out infinite, gradientText 5s ease infinite;
+            opacity: 0;
         }
 
         @keyframes titleGlow {
@@ -399,6 +400,26 @@
             font-size: 1rem;
             font-weight: 300;
             animation: textPulse 4s ease-in-out infinite;
+        }
+
+        .last-updated span {
+            display: inline-block;
+            opacity: 0;
+            animation: charReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes charReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(15px) rotateX(-90deg);
+                filter: blur(6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+                filter: blur(0);
+            }
         }
 
         @keyframes textPulse {
@@ -995,7 +1016,7 @@
                 <li><strong>Method:</strong> Open a support ticket or DM an administrator</li>
             </ul>
 
-            <div class="footer">
+            <div class="footer shimmer-text">
                 © 2026 GLOBAL OFFICIAL Bot. All rights reserved.<br>
                 <a href="https://discord.globalserver.one" target="_blank"
                     class="contact-link">discord.globalserver.one</a>
@@ -1053,6 +1074,42 @@
                 ripple.remove();
             }, 1000);
         }
+
+        // Apply text animations
+        window.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('.title');
+            const lastUpdated = document.querySelector('.last-updated');
+
+            if (title) {
+                setTimeout(() => {
+                    let i = 0;
+                    const text = 'Privacy Policy';
+                    title.textContent = '';
+                    title.style.opacity = '1';
+                    function type() {
+                        if (i < text.length) {
+                            title.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(type, 120);
+                        }
+                    }
+                    type();
+                }, 400);
+            }
+
+            if (lastUpdated) {
+                setTimeout(() => {
+                    const text = lastUpdated.textContent;
+                    lastUpdated.textContent = '';
+                    text.split('').forEach((char, index) => {
+                        const span = document.createElement('span');
+                        span.textContent = char === ' ' ? '\u00A0' : char;
+                        span.style.animationDelay = `${index * 0.03}s`;
+                        lastUpdated.appendChild(span);
+                    });
+                }, 2500);
+            }
+        });
 
         // Generate enhanced particles
         const particlesContainer = document.getElementById('particles');
