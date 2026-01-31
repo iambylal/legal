@@ -889,11 +889,45 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Parallax scroll effect
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            document.querySelector('.bg-gradient').style.transform = `translateY(${scrollY * 0.5}px)`;
-            document.querySelector('.bg-particles').style.transform = `translateY(${scrollY * 0.3}px)`;
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideIn 0.8s ease-out forwards';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements for scroll animations
+        document.querySelectorAll('h2, h3, p, ul, .highlight, .data-category, .intro').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+
+        // Animate list items individually
+        document.querySelectorAll('li').forEach((li, index) => {
+            li.style.opacity = '0';
+            li.style.transform = 'translateX(-20px)';
+
+            const liObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.animation = 'slideIn 0.6s ease-out forwards';
+                            entry.target.style.opacity = '1';
+                        }, index * 50);
+                    }
+                });
+            }, observerOptions);
+
+            liObserver.observe(li);
         });
     </script>
 </body>
