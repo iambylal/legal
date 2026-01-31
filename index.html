@@ -352,6 +352,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            opacity: 0;
             margin-bottom: 15px;
             letter-spacing: -3px;
             animation: logoGlow 3s ease-in-out infinite,
@@ -463,6 +464,27 @@
             margin-bottom: 50px;
             letter-spacing: 3px;
             animation: fadeInUp 1s ease-out 0.3s backwards, letterSpacing 4s ease-in-out infinite, colorShift 6s ease infinite;
+            opacity: 0;
+        }
+
+        .subtitle span {
+            display: inline-block;
+            opacity: 0;
+            animation: charReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes charReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) rotateX(-90deg);
+                filter: blur(8px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+                filter: blur(0);
+            }
         }
 
         @keyframes fadeInUp {
@@ -986,6 +1008,51 @@
             }
         }
 
+        /* Shimmer Text Effect */
+        .shimmer-text {
+            background: linear-gradient(90deg,
+                    #999 0%,
+                    #ff6666 25%,
+                    #ff0000 50%,
+                    #ff6666 75%,
+                    #999 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerMove 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerMove {
+
+            0%,
+            100% {
+                background-position: 200% 0;
+            }
+
+            50% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Wave Text Effect */
+        .wave-text span {
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         .footer {
             margin-top: 50px;
             font-size: 0.9rem;
@@ -1038,13 +1105,13 @@
             }
 
             .owner-card {
-                padding: 30px;
+                display: none;
             }
+        }
 
-            .owner-avatar {
-                width: 100px;
-                height: 100px;
-            }
+        /* Smooth scrolling for all devices */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -1061,24 +1128,6 @@
         <p class="subtitle">GLOBAL OFFICIAL BOT</p>
 
         <div class="divider"></div>
-
-        <!-- Bot Owner Profile Card -->
-        <div class="owner-card">
-            <div class="owner-avatar">👤</div>
-            <h3 class="owner-name">Bot Owner</h3>
-            <p class="owner-title">Developer & Creator</p>
-            <div class="owner-social">
-                <a href="https://discord.globalserver.one" target="_blank" class="social-link" title="Discord">
-                    💬
-                </a>
-                <a href="https://discord.globalserver.one" target="_blank" class="social-link" title="Server">
-                    🌐
-                </a>
-                <a href="https://discord.globalserver.one" target="_blank" class="social-link" title="Support">
-                    ⚙️
-                </a>
-            </div>
-        </div>
 
         <div class="buttons-container">
             <a href="tos.html" class="legal-button">
@@ -1102,7 +1151,7 @@
             </a>
         </div>
 
-        <div class="footer">
+        <div class="footer shimmer-text">
             Last Updated: January 31, 2026
         </div>
     </div>
@@ -1168,6 +1217,50 @@
                 ripple.remove();
             }, 1000);
         }
+
+        // Typewriter effect for logo
+        function typewriter(element, text, speed = 150) {
+            let i = 0;
+            element.textContent = '';
+            element.style.opacity = '1';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Character-by-character reveal for subtitle
+        function revealChars(element) {
+            const text = element.textContent;
+            element.textContent = '';
+            element.style.opacity = '1';
+
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${index * 0.05}s`;
+                element.appendChild(span);
+            });
+        }
+
+        // Apply text animations on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const logo = document.querySelector('.logo');
+            const subtitle = document.querySelector('.subtitle');
+
+            if (logo) {
+                setTimeout(() => typewriter(logo, 'LEGAL', 200), 300);
+            }
+
+            if (subtitle) {
+                setTimeout(() => revealChars(subtitle), 1500);
+            }
+        });
 
         // Generate enhanced particles
         const particlesContainer = document.getElementById('particles');
