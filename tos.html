@@ -794,7 +794,8 @@
             }
 
             .title {
-                font-size: 2.8rem;
+                font-size: 2rem;
+                word-wrap: break-word;
             }
 
             .emoji-icon {
@@ -803,6 +804,28 @@
 
             h2 {
                 font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.6rem !important;
+            }
+
+            .emoji-icon {
+                font-size: 3rem !important;
+            }
+
+            .content-card {
+                padding: 30px 15px !important;
+            }
+
+            h2 {
+                font-size: 1.4rem !important;
+            }
+
+            .header {
+                margin-bottom: 40px !important;
             }
         }
     </style>
