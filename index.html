@@ -1208,7 +1208,7 @@
             }, 1000);
         }
 
-        // Unified smooth animation: float + left swipe + typewriter
+        // Unified smooth animation: float + left swipe + typewriter (Optimized 30ms)
         function smoothTextReveal(element, delay = 0) {
             setTimeout(() => {
                 const text = element.textContent;
@@ -1224,7 +1224,7 @@
                         const span = document.createElement('span');
                         span.textContent = chars[index] === ' ' ? '\u00A0' : chars[index];
                         span.style.opacity = '0';
-                        span.style.transform = 'translateX(-20px) translateY(8px)';
+                        span.style.transform = 'translateX(-15px) translateY(5px)';
                         span.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                         element.appendChild(span);
 
@@ -1237,7 +1237,7 @@
                         });
 
                         index++;
-                        setTimeout(revealNext, 60); // Fast 10ms per character
+                        setTimeout(revealNext, 30); // Fast 30ms per character
                     }
                 }
                 revealNext();
